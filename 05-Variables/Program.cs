@@ -1,17 +1,18 @@
 ﻿using System.Xml;
 using System.Globalization;
+using static System.Console;
 
 Action printLine = () =>
-    Console.WriteLine("\n----------------------------------------------------------\n");
+    WriteLine("\n----------------------------------------------------------\n");
 
 #region object type
 object height = 1.88; // storing a double in an object
 object name = "Amir"; // storing a string in an object
-Console.WriteLine($"{name} is {height} meters tall.");
+WriteLine($"{name} is {height} meters tall.");
 
 // int length1 = name.Length; // this gives a compiler error
 int length2 = ((string)name).Length; // cast name to a string
-Console.WriteLine($"{name} has {length2} characters.");
+WriteLine($"{name} has {length2} characters.");
 printLine();
 #endregion
 
@@ -31,10 +32,10 @@ something = new[] { 3, 5, 7 };
 // something = "Kauan";
 
 // this compiles but might throw an exception at runtime
-Console.WriteLine($"The Length of something is {something.Length}.");
+WriteLine($"The Length of something is {something.Length}.");
 
 // output the type of the something variable
-Console.WriteLine($"The type of something is {something.GetType()}.");
+WriteLine($"The type of something is {something.GetType()}.");
 printLine();
 #endregion
 
@@ -61,16 +62,16 @@ printLine();
 #endregion
 
 #region default values
-Console.WriteLine($"default(int) = {default(int)}"); // 0
-Console.WriteLine($"default(bool) = {default(bool)}"); // False
-Console.WriteLine($"default(DateTime) = {default(DateTime)}"); // 0001-01-01 00:00:00
-Console.WriteLine($"default(string) = {default(string) ?? "<NULL>"}"); // null
+WriteLine($"default(int) = {default(int)}"); // 0
+WriteLine($"default(bool) = {default(bool)}"); // False
+WriteLine($"default(DateTime) = {default(DateTime)}"); // 0001-01-01 00:00:00
+WriteLine($"default(string) = {default(string) ?? "<NULL>"}"); // null
 printLine();
 
 int number = 13;
-Console.WriteLine($"number set to: {number}");
+WriteLine($"number set to: {number}");
 number = default;
-Console.WriteLine($"number reset to its default: {number}");
+WriteLine($"number reset to its default: {number}");
 printLine();
 #endregion
 
@@ -82,7 +83,7 @@ CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
 int numberOfApples = 12;
 decimal pricePerApple = 0.35M;
 
-Console.WriteLine(
+WriteLine(
     format: "{0} apples cost {1:C}",
     arg0: numberOfApples,
     arg1: pricePerApple * numberOfApples);
@@ -93,11 +94,11 @@ string formattedPrice = string.Format(
     arg1: pricePerApple * numberOfApples);
 
 // three parameter values can use named arguments
-Console.WriteLine("{0} {1} lived in {2}.",
+WriteLine("{0} {1} lived in {2}.",
     arg0: "Kauan", arg1: "Manzato", arg2: "São Paulo");
 
 // four or more parameter values cannot use named arguments
-Console.WriteLine(
+WriteLine(
     "{0} {1} lived in {2} and worked in the {3} team at {4}.",
     "Kauan", "Manzato", "São Paulo", "Development", "Manzato Tech");
 printLine();
@@ -107,7 +108,7 @@ printLine();
 // the following statement must be all on one line when using C# 10
 // or earlier. If using C# 11 or later, we can include a line break
 // in the middle of an expression but not in the string text
-Console.WriteLine($"{numberOfApples} apples cost {pricePerApple * numberOfApples:C}.");
+WriteLine($"{numberOfApples} apples cost {pricePerApple * numberOfApples:C}.");
 printLine();
 #endregion
 
@@ -118,17 +119,29 @@ int applesCount = 1234;
 string bananasText = "Bananas";
 int bananasCount = 56789;
 
-Console.WriteLine(format: "{0,-10} {1,6}",
+WriteLine(format: "{0,-10} {1,6}",
     arg0: "Name", arg1: "Count");
-Console.WriteLine(format: "{0,-10} {1,6:N0}",
+WriteLine(format: "{0,-10} {1,6:N0}",
     arg0: applesText, arg1: applesCount);
-Console.WriteLine(format: "{0,-10} {1,6:N0}",
+WriteLine(format: "{0,-10} {1,6:N0}",
     arg0: bananasText, arg1: bananasCount);
 printLine();
 #endregion
 
 #region custom number formatting
 decimal value = 0.325M;
-Console.WriteLine("Currency: {0:C}, Percentage: {0:0.0%}", value);
+WriteLine("Currency: {0:C}, Percentage: {0:0.0%}", value);
 printLine();
 #endregion
+
+#region user input
+Write("Type your first name and press ENTER: ");
+string? firstName = ReadLine();
+
+Write("Type your age and press ENTER: ");
+string age = ReadLine()!;
+
+WriteLine($"Hello, {firstName}, you look good for {age}.");
+printLine();
+#endregion
+
